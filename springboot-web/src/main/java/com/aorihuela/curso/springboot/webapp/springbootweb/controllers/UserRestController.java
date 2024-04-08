@@ -16,7 +16,7 @@ public class UserRestController {
         map.put("title", "Controlador usuario 2024");
         map.put("name", "Alvaro Antonio");
         map.put("lastname", "Orihuela Pastor");        
-        map.put("edad", 45); 
+        map.put("edad", 145); 
         map.put("crack", true); 
         return map;
 
