@@ -6,7 +6,6 @@ public class Product {
     private Long price;
 
 
-
     public Product() {
     }
 
