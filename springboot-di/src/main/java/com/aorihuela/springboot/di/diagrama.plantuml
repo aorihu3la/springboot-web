@@ -1,0 +1,43 @@
+@startuml
+
+'RELACIONES
+
+'ElementoForm o-- Validador
+
+SomeController -- ProductService
+ProductService -- ProductServiceImpl
+ProductRepository -- ProductRepositoryImpl
+ProductRepositoryImpl -- Product
+
+' CLASES
+class SomeController{
+    +showAll()
+    +showOne()
+}
+
+interface ProductService{
+    findAll()
+    findbyId()
+}
+
+interface ProductRepository{
+    findAll()
+    findbyId()
+}
+
+class ProductRepositoryImpl{
+    +findAll()
+    +findbyId()
+}
+
+class ProductServiceImpl{
+    +findAll()
+    +findbyId()
+}
+
+class Product{
+    -id: Long
+    -nombre: String
+    -price: Long 
+}
+@enduml
