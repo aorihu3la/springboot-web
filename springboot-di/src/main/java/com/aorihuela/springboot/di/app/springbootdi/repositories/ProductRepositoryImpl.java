@@ -5,12 +5,14 @@ import java.util.List;
 
 //import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.context.annotation.RequestScope;
 
 import com.aorihuela.springboot.di.app.springbootdi.models.Product;
 
 // Es un componente
 //@Component
-@Repository
+@RequestScope //El pedido por request
+@Repository("productList")
 public class ProductRepositoryImpl implements ProductRepository{
     private List<Product> dataProduct;
 
@@ -18,10 +20,10 @@ public class ProductRepositoryImpl implements ProductRepository{
     // Constructor
     public ProductRepositoryImpl() {
         this.dataProduct = Arrays.asList(
-            new Product(1L,"Memoria 4GB", 100L),
-            new Product(2L,"Mainboard intel", 140L),
-            new Product(3L,"microprocesador i7", 200L), 
-            new Product(4L,"teclado Redragon", 50L)
+            new Product(1L,"Memoria 4GB", 1000L),
+            new Product(2L,"Mainboard Intel", 140L),
+            new Product(3L,"Microprocesador i7", 200L), 
+            new Product(4L,"Teclado Redragon", 50L)
 
         );
     }

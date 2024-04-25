@@ -3,7 +3,8 @@ package com.aorihuela.springboot.di.app.springbootdi.services;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+//import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
@@ -15,23 +16,37 @@ import com.aorihuela.springboot.di.app.springbootdi.repositories.ProductReposito
 @Service
 public class ProductServiceImpl implements ProductService {
     
-    @Autowired
+    //@Autowired
     private ProductRepository repository;
     //private ProductRepositoryImpl repository = new ProductRepositoryImpl();
 
+
+    // Si tengo dos implementaciones de una misma interfase puedo seleccionar cual usar con la anotacion @Qualifier
+    public ProductServiceImpl(@Qualifier("productList") ProductRepository repository) {
+        this.repository = repository;
+    }
+
+   
     //Logica de negocio
+
+    //Comentarios
+    //Windows: Ctrl+K Ctrl+C
+    //Windows: Ctrl+K Ctrl+U
 
     @Override
     public List<Product> findAll(){
         
          return repository.findAll().stream().map(p -> {
             Double priceIgv = p.getPrice() * 1.1d;
+            // p.setPrice(priceIgv.longValue());
+            // return p;
+
             // principio de inmutabilidad
             Product newProduct = new Product();
             newProduct = (Product)p.clone();
             newProduct.setPrice(priceIgv.longValue());
-            //p.setPrice(priceIgv.longValue());
             return newProduct;
+            
          }).collect(Collectors.toList());  
         //return repository.findAll();
 
